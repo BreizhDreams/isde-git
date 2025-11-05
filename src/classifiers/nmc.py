@@ -53,4 +53,20 @@ class NMC(object):
         return self
 
     def predict(self, xts):
-        pass
+        """
+        Predict the class labels of the test data xts
+
+        Paratmeters
+        ----------
+        xts : ndarray
+            the test data matrix.
+        
+        Return
+        ------
+        ypred : ndarray
+            predicted class labels for each test sample
+        """
+        ed = euclidean_distances(xts, self._centroids)
+        ypred = np.argmin(ed, axis=1)
+        return ypred
+
